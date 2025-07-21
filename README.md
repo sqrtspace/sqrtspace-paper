@@ -55,7 +55,7 @@ Once published on arXiv:
 
 1. **Quick Overview**: Read `executive_summary.md` (2 pages)
 2. **Technical Summary**: Read `two_page_summary.tex` (2 pages, compile to PDF)
-3. **Full Paper**: Read `main.tex` (23 pages, compile to PDF)
+3. **Full Paper**: Read `main.tex` (24 pages, compile to PDF)
 4. **Try It Yourself**: Visit the [experiments repository](https://github.com/sqrtspace/sqrtspace-experiments)
 
 ## Contact

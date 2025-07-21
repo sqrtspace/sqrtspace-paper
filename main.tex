@@ -507,6 +507,13 @@ The 18.3× slowdown aligns more closely with theoretical predictions than our si
 
 \begin{figure}[htbp]
 \centering
+\includegraphics[width=0.95\textwidth]{figures/ollama_spacetime_results.png}
+\caption{Real LLM experiments with Ollama showing (a) 18.3× slowdown for √n context chunking and (b) minimal 7.6\% overhead for checkpointing. These results with production models validate the theoretical space-time tradeoffs.}
+\label{fig:ollama_results}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
 \includegraphics[width=0.95\textwidth]{figures/llm_attention_tradeoff.png}
 \caption{LLM KV-cache experiments showing (a) token generation time decreases with smaller caches due to memory bandwidth limits, (b) memory usage follows theoretical predictions, (c) throughput inversely correlates with cache size, and (d) the space-time tradeoff deviates from theory when memory bandwidth dominates.}
 \label{fig:llm_tradeoff}
