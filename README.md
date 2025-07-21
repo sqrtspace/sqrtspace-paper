@@ -21,10 +21,26 @@ Ryan Williams' 2025 result demonstrates that any time-bounded algorithm can be s
 
 ## Key Findings
 
-1. **Theoretical validation**: √n space-time patterns confirmed experimentally
-2. **Massive constant factors**: 100× to 10,000× due to memory hierarchies
-3. **Real-world ubiquity**: Found in PostgreSQL, Flash Attention, MapReduce
-4. **Practical guidance**: When to trade space for time (and when not to)
+1. **Experimental validation**:
+   - Checkpointed sorting: 375-627× slowdown for √n space reduction
+   - Real LLM inference (Ollama): 18.3× slowdown for √n context chunking
+   - Stream processing: 30× speedup with sliding windows (less memory = faster!)
+   - SQLite: Counterintuitive faster performance with smaller caches on modern SSDs
+
+2. **Production system analysis**:
+   - SQLite (billions of deployments): Buffer pools sized at √(database_size)
+   - Flash Attention (GPT-4, etc.): O(n²) → O(n) memory enabling 10× longer contexts
+   - PostgreSQL & Apache Spark: √n patterns in buffer pools and shuffle operations
+
+3. **Theory vs practice gap**:
+   - Williams predicts √n slowdown, we observe 100-10,000× due to memory hierarchies
+   - L1 cache: ~1ns, RAM: ~100ns, SSD: ~100μs, HDD: ~10ms
+   - Modern hardware can invert predictions (bandwidth bottlenecks)
+
+4. **Practical framework**:
+   - When beneficial: Streaming data, sequential access, distributed systems
+   - When harmful: Interactive apps, random access, small datasets
+   - Interactive dashboard and tools for practitioners
 
 ## Building the Paper
 
