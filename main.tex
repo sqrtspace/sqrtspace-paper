@@ -507,6 +507,13 @@ The 18.3× slowdown aligns more closely with theoretical predictions than our si
 
 \begin{figure}[htbp]
 \centering
+\includegraphics[width=0.75\textwidth]{figures/ollama_sqrt_validation.png}
+\caption{Validation that our Ollama context chunking follows the theoretical $\sqrt{n}$ pattern. For 14,750 characters of input, we use 122 chunks of 121 characters each, precisely following $\sqrt{n}$ chunking.}
+\label{fig:ollama_sqrt}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
 \includegraphics[width=0.95\textwidth]{figures/ollama_spacetime_results.png}
 \caption{Real LLM experiments with Ollama showing (a) 18.3× slowdown for √n context chunking and (b) minimal 7.6\% overhead for checkpointing. These results with production models validate the theoretical space-time tradeoffs.}
 \label{fig:ollama_results}
