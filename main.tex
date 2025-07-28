@@ -123,7 +123,7 @@ All experiments were conducted on the following hardware and software configurat
 
 \textbf{Hardware Specifications:}
 \begin{itemize}
-\item CPU: Apple M3 Max (16 cores ARM64, 3.7 GHz max frequency)
+\item CPU: Apple M4 Max (16 cores ARM64, 4.4 GHz max frequency)
 \item RAM: 64GB unified memory (400 GB/s bandwidth)
 \item Storage: 2TB NVMe SSD with 7,000+ MB/s sequential read speeds
 \item Cache: L1: 128KB I-cache + 64KB D-cache per core, L2: 4MB shared per cluster
@@ -131,7 +131,7 @@ All experiments were conducted on the following hardware and software configurat
 
 \textbf{Software Environment:}
 \begin{itemize}
-\item OS: macOS 15.1 (Darwin 24.1.0 ARM64)
+\item OS: macOS 15.5
 \item Python: 3.12.7 with NumPy 2.2.0, SciPy 1.14.1, Matplotlib 3.9.3
 \item .NET: 8.0.404 SDK (for C\# maze solver)
 \item SQLite: 3.43.2
@@ -457,7 +457,7 @@ O(log n) & 0.1 & 0.050 $\pm$ 0.002 ms & 0.8× & n/log n× \\
 O(1) & 0.1 & 0.050 $\pm$ 0.002 ms & 0.8× & n× \\
 \bottomrule
 \end{tabular}
-\caption{SQLite buffer pool performance on Apple M3 Max with NVMe SSD. Counter-intuitively, smaller caches show better performance due to reduced memory management overhead on fast storage. Results show mean $\pm$ standard deviation from 50 queries per configuration.}
+\caption{SQLite buffer pool performance on Apple M4 Max with NVMe SSD. Counter-intuitively, smaller caches show better performance due to reduced memory management overhead on fast storage. Results show mean $\pm$ standard deviation from 50 queries per configuration.}
 \label{tab:sqlite}
 \end{table}
 
@@ -537,7 +537,7 @@ The 18.3× slowdown aligns more closely with theoretical predictions than our si
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/ollama_spacetime_results.png}
-\caption{Real LLM experiments with Ollama showing (a) 18.3× slowdown for √n context chunking and (b) minimal 7.6\% overhead for checkpointing. These results with production models validate the theoretical space-time tradeoffs.}
+\caption{Real LLM experiments with Ollama showing (a) 18.3× slowdown for $\sqrt{n}$ context chunking and (b) minimal 7.6\% overhead for checkpointing. These results with production models validate the theoretical space-time tradeoffs.}
 \label{fig:ollama_results}
 \end{figure}
 
