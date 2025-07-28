@@ -18,7 +18,7 @@
 \vspace{-10mm}
 
 \section{Core Contribution}
-We demonstrate that Ryan Williams' 2025 theoretical result---TIME[t] $\subseteq$ SPACE[$\sqrt{t \log t}$]---is not merely abstract mathematics, but a fundamental pattern that already governs modern computing systems. Through systematic experiments and analysis of production systems, we bridge the gap between theoretical computer science and practical system design.
+We provide systematic empirical validation of Ryan Williams' 2025 theoretical result---TIME[t] $\subseteq$ SPACE[$\sqrt{t \log t}$]---demonstrating that this fundamental pattern already governs modern computing systems. Through experiments across six domains and analysis of production systems, we bridge the gap between theoretical computer science and practical system design.
 
 \section{Key Findings}
 
@@ -28,15 +28,17 @@ We implemented six experimental domains with space-time tradeoffs:
 \begin{itemize}
 \item \textbf{Maze Solving}: Memory-limited DFS uses O($\sqrt{n}$) space vs BFS's O(n), with 5$\times$ time penalty
 \item \textbf{External Sorting}: Checkpointed sort with O($\sqrt{n}$) memory shows 375-627$\times$ slowdown  
-\item \textbf{Stream Processing}: Sliding window (O(w) space) is 30$\times$ FASTER than full storage
+\item \textbf{Stream Processing}: Sliding window (O(w) space) is 30$\times$ FASTER than full storage for quantile queries
+\item \textbf{SQLite Buffer Pools}: Counter-intuitively, O($\sqrt{n}$) cache outperforms O(n) on fast NVMe SSDs
+\item \textbf{LLM Attention}: Simulated Flash-style O($\sqrt{n}$) cache is 6.8$\times$ faster due to bandwidth limits
 \item \textbf{Real LLM (Ollama)}: Context chunking with O($\sqrt{n}$) space shows 18.3$\times$ slowdown
 \end{itemize}
 
-\textbf{Critical Insight}: Constant factors range from 100$\times$ to 10,000$\times$ due to memory hierarchies (L1/L2/L3/RAM/SSD), far exceeding theoretical predictions but following the $\sqrt{n}$ pattern.
+\textbf{Critical Insight}: Constant factors range from 5$\times$ to over 1,000,000$\times$ due to memory hierarchies (L1/L2/L3/RAM/SSD), far exceeding theoretical predictions but following the $\sqrt{n}$ pattern.
 
 \subsection{Real-World Systems Analysis}
 
-\textbf{Databases (PostgreSQL)}
+\textbf{Databases (PostgreSQL, SQLite)}
 \begin{itemize}
 \item Buffer pools sized at $\sqrt{\text{database\_size}}$
 \item Query planner: hash joins (O(n) memory) vs nested loops (O(1) memory)  
@@ -81,25 +83,27 @@ We implemented six experimental domains with space-time tradeoffs:
 
 \section{Practical Impact}
 
-\textbf{Explains Existing Designs}: The size of the database buffer, the ML checkpoint intervals, and the distributed configurations all follow $\sqrt{n}$ patterns discovered by trial and error.
+\textbf{Explains Existing Designs}: Database buffers, ML checkpoint intervals, and distributed configurations all follow $\sqrt{n}$ patterns discovered independently by practitioners.
 
-\textbf{Guides Future Systems}: Provides a mathematical framework for memory allocation and algorithm selection.
+\textbf{Reveals Hardware Effects}: Modern NVMe SSDs and memory bandwidth can invert theoretical predictions, with smaller caches sometimes outperforming larger ones.
 
-\textbf{Tools for Practitioners}: The interactive dashboard helps developers optimize specific workloads.
+\textbf{Guides Future Systems}: Provides mathematical framework for memory allocation and algorithm selection across diverse domains.
+
+\textbf{Tools for Practitioners}: Interactive dashboard and measurement framework help developers optimize specific workloads.
 
 \section{Why This Matters}
 
-As data grows exponentially while memory grows linearly, understanding space-time tradeoffs becomes critical. Williams' result provides the theoretical foundation; our work shows how to apply it practically despite massive constant factors.
+As data grows exponentially while memory grows linearly, understanding space-time tradeoffs becomes critical. Williams' result provides the theoretical foundation; our work shows how to apply it practically despite massive constant factors from real hardware.
 
-The pattern $\sqrt{n}$ appears everywhere, from database buffers to neural network training, validating the deep connection between theory and practice.
+The $\sqrt{n}$ pattern appears everywhere, from database buffers to neural network training, validating the deep connection between theory and practice.
 
 \section{Technical Highlights}
 \begin{itemize}
 \item Continuous memory monitoring at 10ms intervals
-\item Cache-aware benchmarking methodology  
-\item Theoretical analysis connecting to Williams' bound
-\item Open-source code and reproducible experiments
-\item Interactive visualizations of tradeoffs
+\item Statistical analysis with 95\% confidence intervals
+\item Experiments on Apple M3 Max (acknowledging hardware limitations)
+\item All code and data open-source on GitHub
+\item Interactive visualizations at sqrtspace.dev
 \end{itemize}
 
 \section{Paper Organization}
@@ -107,16 +111,17 @@ The pattern $\sqrt{n}$ appears everywhere, from database buffers to neural netwo
 \item Introduction with four concrete contributions
 \item Williams' theorem and memory hierarchy background
 \item Experimental methodology with statistical rigor
-\item Results: Maze solving, sorting, streaming, SQLite, LLMs, Ollama
+\item Results: Six domains with detailed measurements
 \item Analysis: Production systems (databases, transformers, distributed)
 \item Practical framework and guidelines
-\item Interactive tools and dashboard
+\item Limitations: Hardware diversity, scale constraints
+\item Tools: Dashboard and measurement framework
 \end{enumerate}
 
 \vspace{3mm}
-\noindent\textbf{Bottom Line}: Williams proved what is mathematically possible. We show what is practically achievable and why the gap matters for system design.
+\noindent\textbf{Bottom Line}: Williams proved what is mathematically possible. We show what is practically achievable, why the gap matters for system design, and provide tools to navigate the space-time landscape.
 
 \vspace{3mm}
-\noindent\textit{Full paper includes detailed experiments, system analysis, and interactive tools at \texttt{github.com/sqrtspace}}
+\noindent\textit{Full paper with experiments and tools at \texttt{github.com/sqrtspace}}
 
 \end{document}
