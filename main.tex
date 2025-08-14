@@ -43,6 +43,16 @@ Founder \\ MarketAlly LLC (USA) \\ Founder \\ MarketAlly Pte. Ltd. (Singapore) \
 
 \maketitle
 
+\begin{center}
+\setlength{\fboxsep}{8pt}
+\noindent\fbox{%
+  \parbox{0.96\linewidth}{%
+    \textit{This version is part of ongoing research. Future versions will include additional experiments, analysis, and refinements.}
+  }%
+}
+\end{center}
+\vspace{1em}
+
 \begin{abstract}
 Ryan Williams' 2025 result demonstrates that any time-bounded algorithm can be simulated using only $O(\sqrt{t \log t})$ space, establishing a fundamental limit on the space-time relationship in computation~\cite{williams2025}. This paper bridges the gap between this theoretical breakthrough and practical computing systems. Through rigorous experiments with statistical validation, we demonstrate space-time tradeoffs in six domains: external sorting (375-627× slowdown for $\sqrt{n}$ space), graph traversal (5× slowdown), stream processing (30× speedup for sliding window quantile queries), SQLite databases, LLM attention mechanisms, and real LLM inference with Ollama (18.3× slowdown). Surprisingly, we find that modern hardware can invert theoretical predictions—our simulated LLM experiments show 21× speedup with minimal cache due to memory bandwidth bottlenecks, while real model inference shows the expected slowdown. We analyze production systems including SQLite (billions of deployments) and transformer models (Flash Attention), showing that the $\sqrt{n}$ pattern emerges consistently despite hardware variations. Our work validates Williams' theoretical insight while revealing that practical constant factors range from $5\times$ to over $1{,}000{,}000\times$, fundamentally shaped by cache hierarchies, memory bandwidth, and I/O systems.
 \end{abstract}

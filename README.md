@@ -6,9 +6,7 @@ This repository contains the academic paper exploring how Ryan Williams' 2025 th
 
 **Title**: The Ubiquity of Space-Time Simulation in Modern Computing: From Theory to Practice  
 **Author**: David H. Friedel Jr., Founder, MarketAlly LLC (USA) & MarketAlly Pte. Ltd. (Singapore)  
-**Status**: Submitted to arXiv (needing endorsement)  
-
-
+**Status**: Ongoing research: Version 2 released with additional clarity, preliminary results, and planned further experiments and refinements.
 
 ## Abstract
 
@@ -20,6 +18,8 @@ Ryan Williams' 2025 result demonstrates that any time-bounded algorithm can be s
 - **[Interactive Dashboard](https://github.com/sqrtspace/sqrtspace-experiments/tree/main/dashboard)**: Streamlit app for exploring space-time tradeoffs
 
 ## Key Findings
+
+Note: All findings in this version are subject to refinement as additional experiments and cross-hardware validation are conducted.
 
 1. **Experimental validation**:
    - Checkpointed sorting: 375-627× slowdown for √n space reduction
